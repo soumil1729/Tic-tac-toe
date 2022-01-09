@@ -5,19 +5,27 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Patrick Hand SC', cursive;
-}
-section {
-  display: flex;
-  flex-direction: column;
+:root {
+  --pointer: pointer;
 }
 
-.tictactoe {
+body {
+  font-family: 'Patrick Hand SC', cursive;
+  color: #333;
+  position: relative;
+  letter-spacing: 1.4px;
+}
+
+.section-tictactoe {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.tac-container {
+  margin-bottom: 2rem;
 }
 
 .tac-rows {
@@ -25,6 +33,9 @@ section {
   grid-template-columns: repeat(3, auto);
 }
 
+/* -------- */
+/* ROWS */
+/* --------- */
 .row {
   width: 100px;
   height: 100px;
@@ -32,7 +43,7 @@ section {
   border-bottom: none;
   border-left: none;
 
-  cursor: pointer;
+  cursor: var(--pointer);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,6 +70,14 @@ section {
   border-bottom: none;
 }
 
+.row.x {
+  cursor: default;
+}
+
+.row.o {
+  cursor: default;
+}
+
 .row.x::after,
 .row.o::after {
   font-size: 6rem;
@@ -75,15 +94,90 @@ section {
   color: #0045f4;
 }
 
+/* ------- */
+/* current Players  */
+/* --------- */
+.current-player {
+  display: flex;
+  font-size: 2rem;
+  width: 450px;
+  justify-content: space-evenly;
+  margin: 7rem 0 2rem 0;
+}
+
+.player-1,
+.player-2 {
+  background-color: #eee;
+  padding: 0.2em 0.6em;
+  border-radius: 8px;
+  position: relative;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.player-1.x::after,
+.player-2.o::after {
+  content: '';
+  width: 100%;
+  height: 10px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.player-1.x::after {
+  background-color: #fc3a52;
+}
+
+.player-2.o::after {
+  background-color: #0045f4;
+}
+
+/* --------- */
+/* reset game */
+/*------------  */
+
+.reset-game-btn {
+  font-family: inherit;
+  font-size: 2rem;
+  letter-spacing: 1.4px;
+  padding: 0.1em 0.7em;
+  margin-bottom: 2rem;
+  border: none;
+  background-color: #eee;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 200ms;
+}
+
+.reset-game-btn:hover {
+  background-color: #dcdcdc;
+}
+.reset-game-btn:active {
+  transform: scale(0.98);
+  background-color: #dcdcdc;
+}
+/* ------------ */
 /* winner */
-.winner {
+/* ------------- */
+.winner,
+.draw {
   font-size: 2rem;
   font-weight: 600;
   letter-spacing: 1.4px;
-  margin-top: 2rem;
   display: flex;
   gap: 0.8rem;
   align-items: center;
+  transform: translateY(0);
+  transition: all 200ms;
+}
+.winner.hidden {
+  opacity: 0;
+}
+
+.draw.hidden {
+  opacity: 0;
 }
 
 .player-winner {
@@ -100,6 +194,13 @@ section {
 }
 
 .winner-svg {
-  /* display: inline-block; */
   width: 50px;
+}
+
+.grid-svg {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  z-index: -100;
+  opacity: 0.6;
 }

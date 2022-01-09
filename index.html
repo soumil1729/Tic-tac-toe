@@ -4,18 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
     <link rel="stylesheet" href="style.css" />
     <title>Tic tac toe</title>
   </head>
   <body>
-    <section class="tictactoe">
+    <img class="grid-svg" src="./images/grid.svg" />
+    <section class="section-tictactoe">
+      <div class="current-player">
+        <span class="player-1">Player 1</span>
+        <span class="player-2">Player 2</span>
+      </div>
       <div class="tac-container">
         <div class="tac-rows">
           <div class="row" id="0"></div>
@@ -29,12 +27,16 @@
           <div class="row" id="8"></div>
         </div>
       </div>
+
+      <button class="reset-game-btn">New Game</button>
       <p class="winner hidden">
-        Player <span class="player-winner x">2</span> wins
+        Player <span class="player-winner"></span> wins
         <img class="winner-svg" src="./images/trophy.svg" alt="trophy" />
       </p>
+      <p class="draw hidden">Match Draw</p>
     </section>
-    <!--  -->
+
+    <!-- ❌❌❌ -->
     <script src="index.js"></script>
   </body>
 </html>
